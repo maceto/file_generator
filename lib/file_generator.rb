@@ -1,5 +1,6 @@
 require "file_generator/version"
+require "file_generator/base"
 
 module FileGenerator
-  # Your code goes here...
+
 end
