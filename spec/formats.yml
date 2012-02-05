@@ -1,0 +1,5 @@
+# 0=>nombre, 1=>longitud, 2=> valor, 3=> relleno, 4 => alineado
+formats:
+  headerformat: "treg:2:CC::I,csuc:3:193::I,time:8:0::I"
+  bodyformat: "id:3:0:0:D,name:30:: :I,region_id:3:0:0:D"
+  footerformat: "pie:2:CC::I,csuc:3:193::I,nreg:10:0:0:D"

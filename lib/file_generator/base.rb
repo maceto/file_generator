@@ -1,24 +1,18 @@
 module FileGenerator
   class Base
-    attr_accessor :headerformat
-    attr_accessor :bodyformat
-    attr_accessor :footerformat
 
-    def initialize(headerformat, bodyformat, footerformat)
-      @headerformat = headerformat
-      @bodyformat = bodyformat
-      @footerformat = footerformat
+    def initialize()
     end
 
-    def generate_file(records) #bank is string and codes is an array
+    def generate_file(records, headerformat, bodyformat, footerformat)
       file = []
-      fh = process_hf(@headerformat)
+      fh = process_hf(headerformat, records)
       file << fh
       records.each do |record|
-        fb = process_body(@body_format, record)
+        fb = process_body(bodyformat, record)
         file << fb
       end
-      ff = process_hf(@footer_format)
+      ff = process_hf(footerformat, records)
       file << ff
       file = file.join("\n")
       file
@@ -59,13 +53,15 @@ module FileGenerator
       attributes.each do |attrib|
         behaviors = split_behaviors(attrib) # 0=>nombre, 1=>longitud, 2=> valor, 3=> relleno, 4 => alineado
         value = ''
-        case behaviors[0]
-          when record.attributes.has_key?(behaviors[0]) then
-            value = record.attributes["#{behaviors[0]}"]
-          when 'time' then
-            value = Time.now.strftime("%Y%m%d")
-          else
-            value = behaviors[2]
+        if record.has_key?(behaviors[0])
+          value = record["#{behaviors[0]}"].to_s
+        else
+          case behaviors[0]
+            when 'time' then
+              value = Time.now.strftime("%Y%m%d")
+            else
+              value = behaviors[2]
+          end
         end
         if (behaviors[3] != '')
           if (behaviors[4] == 'I')
