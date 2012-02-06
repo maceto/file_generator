@@ -6,8 +6,7 @@ describe FileGenerator do
     let(:file_generator) do
       records = [{"id"=>1, "region_id"=>7, "name"=>"les Escaldes"},{"id"=>2, "region_id"=>7, "name"=>"Lima"}]
       format = load_formats.formats
-      f = FileGenerator::Base.new
-      f.generate_file(records,format['headerformat'],format['bodyformat'],format['footerformat'])
+      FileGenerator::Base.generate_file(records,format['headerformat'],format['bodyformat'],format['footerformat'])
       #raise f.generate_file(records,format['headerformat'],format['bodyformat'],format['footerformat']).inspect
     end
 
