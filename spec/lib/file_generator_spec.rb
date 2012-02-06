@@ -17,7 +17,7 @@ describe FileGenerator do
 
     it "header should be match the format" do
       header = file_generator.split("\n")[0]
-      header.should match "CC19320120205"
+      header.should match "CC193" + Time.now.strftime("%Y%m%d").to_s
     end
 
     it "footer should be match the format" do
