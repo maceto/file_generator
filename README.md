@@ -88,7 +88,7 @@ end
 and put the link in the view
 
 <pre>
-link_to("Export", cities_exports_path)
+link_to("Export Cities", cities_exports_path)
 </pre>
 
 with this example you would get a file like this
@@ -99,3 +99,11 @@ CC19320120206
 002Lima                          007
 CC1930000000002
 </pre>
+
+
+# what next ?
+
+* Make header and footer optional
+* Add .csv format like a option
+* Add more pre defined columns like "nreg" or "time"
+* Add more format for the pre defined column "time"
