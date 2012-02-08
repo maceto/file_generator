@@ -2,11 +2,10 @@
 
 ## Description
 
-Every time we need to generate text files for our applications, we are 
+Every time we need to export information from your application as text files, we are
 writing code for every format we need to generate.
 
-FileGenerator tries to minimize the ammount of code needed to perform
-this task.
+FileGenerator tries to minimize the ammount of code needed to perform this task.
 
 ## How does it work?
 
@@ -61,7 +60,7 @@ Add file_generator to your Gemfile.
 Create the method in the Exports controller for generate the file
 
 <pre>
-class ExportsController < ApplicationController
+class ExportsController
   def cities
     headerformat = "treg:2:CC::I,csuc:3:193::I,time:8:0::I"
     bodyformat = "id:3:0:0:D,name:30:: :I,region_id:3:0:0:D"
@@ -89,7 +88,7 @@ end
 and put the link in the view
 
 <pre>
-<%= link_to("Export", cities_exports_path) %>
+link_to("Export", cities_exports_path)
 </pre>
 
 with this example you would get a file like this
