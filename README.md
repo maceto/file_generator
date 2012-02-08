@@ -1,6 +1,6 @@
-h1. file_generator
+# file_generator
 
-h2. Description
+## Description
 
 Every time we need to generate text files for our applications, we are 
 writing code for every format we need to generate.
@@ -8,7 +8,7 @@ writing code for every format we need to generate.
 FileGenerator tries to minimize the ammount of code needed to perform
 this task.
 
-h2. How does it work?
+## How does it work?
 
 FileGenerator takes the header, body, and footer file formats as input
 and additionally a hash with the data we want to export.
@@ -47,7 +47,7 @@ time: puts the current date with the format "YYYYMMDD"·
 
 nreg : put the sum of records in the file in the body
 
-h2. Usage
+## Usage
 
 Add file_generator to your Gemfile.
 
