@@ -1,0 +1,9 @@
+2012-02-07 Martin Aceto <martin.aceto@gmail.com>
+
+* added more documentation in readme
+* inner class definition ''class << self''
+
+2012-02-06 Martin Aceto <martin.aceto@gmail.com>
+
+* First version v 0.0.1
+
