@@ -1,6 +1,6 @@
-# file_generator
+h1. file_generator
 
-## Description
+h2. Description
 
 Every time we need to generate text files for our applications, we are 
 writing code for every format we need to generate.
@@ -8,28 +8,32 @@ writing code for every format we need to generate.
 FileGenerator tries to minimize the ammount of code needed to perform
 this task.
 
-# How does it work?
+h2. How does it work?
 
 FileGenerator takes the header, body, and footer file formats as input
 and additionally a hash with the data we want to export.
 
 The format is expressed as string as follows:
 
-0 => nombre
-1 => longitud
-2 => valor
-3 => relleno
-4 => alineado
+each column have the next attributes
 
+* Name: this name would match with the key in the hash
+* Length: size of the column
+* Value: dafult value in case that name non match with any hash key
+* Fill: for complete the space of lenght
+* Align: align to Left or Right
 
 as for instance:
 
-body format "id:3:0:0:D,name:30:: :I,region_id:3:0:0:D"
-
+<pre>
+"id:3:0:0:D,name:30:: :I,region_id:3:0:0:D"
+</pre>
 
 and the data we want to export is:
 
-   [{"id"=>1, "region_id"=>7, "name"=>"les Escaldes"},{"id"=>2, "region_id"=>7, "name"=>"Lima"}]
+<pre>
+[{"id"=>1, "region_id"=>7, "name"=>"les Escaldes"},{"id"=>2, "region_id"=>7, "name"=>"Lima"}]
+</pre>
 
 FileGenerator will try to match the attribute names with the format
 names, if they dont match, it will assign the value to the line of the
@@ -39,13 +43,13 @@ format.
 It also has names for the format which stablishes a special field as for
 instance:
 
-time: puts the current date with the format "·$"·$"·
+time: puts the current date with the format "YYYYMMDD"·
 
-nreg : put the ammount of records in the file in the body
+nreg : put the sum of records in the file in the body
 
-## Usage
+h2. Usage
 
-Add themes_for_rails to your Gemfile.
+Add file_generator to your Gemfile.
 
 <pre>
   gem 'file_generation'
