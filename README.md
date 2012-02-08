@@ -49,15 +49,19 @@ nreg : put the sum of records in the file in the body
 
 ## Usage
 
+For example if you have a Ruby on Rails application and you need export
+diferents models like City, Region, Localities, Contacts, etc... you could define a controller Exports and for each model a method to export. Like the next example:
+
 Add file_generator to your Gemfile.
 
 <pre>
   gem 'file_generation'
 </pre>
 
-Create the method in the controller for expor the file
+Create the method in the Exports controller for generate the file
 
 <pre>
+class ExportsController < ApplicationController
   def cities
     headerformat = "treg:2:CC::I,csuc:3:193::I,time:8:0::I"
     bodyformat = "id:3:0:0:D,name:30:: :I,region_id:3:0:0:D"
@@ -66,6 +70,33 @@ Create the method in the controller for expor the file
     content = FileGenerator::Base.generate_file(cities, headerformat, bodyformat, footerformat)
     send_data content, :filename => "cities.txt"
   end
+
+  def contacts
+    ...
+  end
+
+end
 </pre>
 
+Add the routes in config/routes.rb
 
+<pre>
+resources :exports do
+  get 'cities', :on => :collection
+end
+</pre>
+
+and put the link in the view
+
+<pre>
+<%= link_to("Export", cities_exports_path) %>
+</pre>
+
+with this example you would get a file like this
+
+<pre>
+CC19320120206
+001les Escaldes                  007
+002Lima                          007
+CC1930000000002
+</pre>
