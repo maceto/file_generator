@@ -14,12 +14,12 @@ and additionally a hash with the data we want to export.
 
 The format is expressed as string as follows:
 
-each column have the next attributes
+each column has the next attributes
 
 * Name: this name would match with the key in the hash
 * Length: size of the column
-* Value: dafult value in case that name non match with any hash key
-* Fill: for complete the space of lenght
+* Value: dafult value in case that name doesn't match with any hash key
+* Fill: for completing the space of length
 * Align: align to Left or Right
 
 as for instance:
@@ -48,7 +48,7 @@ nreg : put the sum of records in the file in the body
 
 ## Usage
 
-For example if you have a Ruby on Rails application and you need export
+For example if you have a Ruby on Rails application and you need to export
 diferents models like City, Region, Localities, Contacts, etc... you could define a controller Exports and for each model a method to export. Like the next example:
 
 Add file_generator to your Gemfile.
