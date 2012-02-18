@@ -26,15 +26,7 @@ module FileGenerator
         attributes = split_format(format)
         attributes.each do |attrib|
           behaviors = split_behaviors(attrib) # 0=>nombre, 1=>longitud, 2=> valor, 3=> relleno, 4 => alineado
-          value = ''
-          case behaviors[0]
-            when 'nreg' then
-              value = records.size.to_s
-            when 'time' then
-              value = Time.now.strftime("%Y%m%d")
-            else
-              value = behaviors[2]
-          end
+          value = fixed_field(behaviors[0], behaviors[2], records)
           if (behaviors[3] != '')
             if (behaviors[4] == 'I')
               row << value.ljust(behaviors[1].to_i, behaviors[3])
@@ -57,12 +49,7 @@ module FileGenerator
           if record.has_key?(behaviors[0])
             value = record["#{behaviors[0]}"].to_s
           else
-            case behaviors[0]
-              when 'time' then
-                value = Time.now.strftime("%Y%m%d")
-              else
-                value = behaviors[2]
-            end
+            value = fixed_field(behaviors[0], behaviors[2])
           end
           if (behaviors[3] != '')
             if (behaviors[4] == 'I')
@@ -75,6 +62,23 @@ module FileGenerator
           end
         end
         row
+      end
+
+      # take the name of the fixed_field and replace with the value
+      #
+      # time: replace with the date of the day in the formar %Y%m&d
+      #
+      # neg: if records is not nil count and replace with the value
+      #
+      def fixed_field(field, default, records = nil)
+        case field
+          when 'time'
+            Time.now.strftime("%Y%m%d")
+          when 'nreg' then
+            records.size.to_s unless records.nil?
+          else
+            default
+        end
       end
 
       # split the format in each behaviors

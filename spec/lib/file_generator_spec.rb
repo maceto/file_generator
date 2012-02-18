@@ -7,7 +7,21 @@ describe FileGenerator do
       records = [{"id"=>1, "region_id"=>7, "name"=>"les Escaldes"},{"id"=>2, "region_id"=>7, "name"=>"Lima"}]
       format = load_formats.formats
       FileGenerator::Base.generate_file(records,format['headerformat'],format['bodyformat'],format['footerformat'])
-      #raise f.generate_file(records,format['headerformat'],format['bodyformat'],format['footerformat']).inspect
+    end
+
+    it "gets a good format path format should not be empty" do
+      format = load_formats.formats
+      format.should_not be_empty
+    end
+
+    it "gets a good format path format should match" do
+      format = load_formats.formats
+      format.should == {'headerformat'=>'treg:2:CC::I,csuc:3:193::I,time:8:0::I', 'bodyformat'=>'id:3:0:0:D,name:30:: :I,region_id:3:0:0:D', 'footerformat'=>'pie:2:CC::I,csuc:3:193::I,nreg:10:0:0:D'}
+    end
+
+    it "gets a bad format path shuold show up a message" do
+      format = load_formats("/spec/formt.yml")
+      format.should == "missing formats file."
     end
 
     it "should not be empty string" do
