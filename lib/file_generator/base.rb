@@ -27,15 +27,7 @@ module FileGenerator
         attributes.each do |attrib|
           behaviors = split_behaviors(attrib) # 0=>nombre, 1=>longitud, 2=> valor, 3=> relleno, 4 => alineado
           value = fixed_field(behaviors[0], behaviors[2], records)
-          if (behaviors[3] != '')
-            if (behaviors[4] == 'I')
-              row << value.ljust(behaviors[1].to_i, behaviors[3])
-            else
-              row << value.rjust(behaviors[1].to_i, behaviors[3])
-            end
-          else
-            row << value
-          end
+          row << justify_and_fill(value, behaviors[1],behaviors[3],behaviors[4])
         end
         row
       end
@@ -51,17 +43,29 @@ module FileGenerator
           else
             value = fixed_field(behaviors[0], behaviors[2])
           end
-          if (behaviors[3] != '')
-            if (behaviors[4] == 'I')
-              row << value.ljust(behaviors[1].to_i, behaviors[3])
-            else
-              row << value.rjust(behaviors[1].to_i, behaviors[3])
-            end
-          else
-            row << value
-          end
+          row << justify_and_fill(value, behaviors[1],behaviors[3],behaviors[4])
         end
         row
+      end
+
+      # Justify and fill
+      #
+      # I = Left
+      #
+      # D = rgiht
+      #
+      # fill = character in the format
+      #
+      def justify_and_fill(value,lenght, fill, justify)
+        if !fill.empty?
+          if justify == 'I'
+            value.ljust(lenght.to_i, fill)
+          elsif justify == 'D'
+            value.rjust(lenght.to_i, fill)
+          end
+        else
+          value
+        end
       end
 
       # take the name of the fixed_field and replace with the value
