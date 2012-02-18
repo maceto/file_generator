@@ -3,13 +3,13 @@ require "yaml"
 
 module Helpers
 
-  def load_formats
-    formats_file = File.join(Dir.pwd, "/spec/formats.yml")
+  def load_formats(path = "/spec/formats.yml")
+    formats_file = File.join(Dir.pwd, path)
     if File.exists?(formats_file)
-      conf = YAML.load(File.read("#{Dir.pwd}/spec/formats.yml"))
+      conf = YAML.load(File.read("#{Dir.pwd}#{path}"))
       OpenStruct.new(conf)
     else
-      raise "missing formats file. "
+      "missing formats file."
     end
   end
 
