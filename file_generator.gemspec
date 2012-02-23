@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Martin Aceto"]
   s.email       = ["martin.aceto@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{Generator of files using a format description}
-  s.description = %q{Generator of files using a format description}
+  s.summary     = %q{Export information from your application as text files, generating these text files using a string format description}
+  s.description = %q{Export information from your application as text files, generating these text files using a string format description}
 
   s.rubyforge_project = "file_generator"
 
